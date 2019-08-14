@@ -1,0 +1,20 @@
+#为g2pc添加新元素。一般来讲，如果返回的是原汉字，没有返回拼音。很可能是系统中没有该词字，可以按以下方式
+#添加新词字。请按实际情况修改g2pc包中的cedict.pkl的路径。修改成功之后要重新加载G2pC模块。
+
+picklepath="D:\\ProgramData\\Anaconda3\\envs\\python36\\Lib\\site-packages\\g2pc\\cedict.pkl"
+
+import pickle
+filepk=open(picklepath,'rb')
+filein=pickle.load(filepk)
+##############以下两句为添加新词/字##############
+upda={'pron':['geng1'],'meaning':['/tilth/'],'trad':['耕']}
+filein["畊"]=upda
+############################
+print(filein)
+fileout=open(picklepath,"wb")
+pickle.dump(filein,fileout)
+
+filepk=open(picklepath,'rb')
+filein=pickle.load(filepk)
+
+print(filein) #一般会把新加的词/字放在最后。如果能正常打印出来，则可在重新加载g2pc后使用
